@@ -12,7 +12,7 @@
     height: 100vh;
     width: 100vw;
     background-color:azure;
-    background-image: url("https://img.freepik.com/free-photo/sun-rays-cloudy-sky_23-2148824928.jpg?w=996&t=st=1719850918~exp=1719851518~hmac=361a2a9cd73f1df9ca4818c07b0bde3502732fd1b5262807c550b17a623f11fc");
+    background-image:url(assets/Default.jpg);
     background-size: cover;
     background-repeat:no-repeat ;
  }
@@ -67,9 +67,9 @@ button{
 }
 
 #reset:hover{
-    background-color: rgb(233, 27, 27);
+    background-color: rgb(191 9 9);
     color:white;
-    border:2px solid rgb(233, 27, 27);
+    border:2px solid rgb(191 9 9);
     transform: scale(1.1);
     font-weight: 600;
 }
