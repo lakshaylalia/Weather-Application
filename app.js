@@ -20,18 +20,12 @@ btn.addEventListener("click",async ()=>{
     alert(result)
     weather=result;
     document.getElementById("city").value="";
-})
 
-let reset=document.getElementById("reset");
-reset.addEventListener("click",()=>{
-    document.getElementById("city").value="";
-})
-setTimeout(() => {
     switch (weather){
         case "Patchy rain nearby":
             body.style.backgroundImage='url(assets/patchyRainNearby.avif)';
          break;
-        case "Partly cloudy":
+        case "Partly Cloudy":
             body.style.backgroundImage='url(assets/partlyCloudy.jpg)'
             break;
         case "Sunny":
@@ -99,4 +93,9 @@ setTimeout(() => {
             body.style.backgroundImage='url(assets/Default.jpg)';
             break;
     }
-},5000)
+})
+
+let reset=document.getElementById("reset");
+reset.addEventListener("click",()=>{
+    document.getElementById("city").value="";
+})
