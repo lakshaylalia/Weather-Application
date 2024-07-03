@@ -25,7 +25,7 @@ btn.addEventListener("click",async ()=>{
         case "Patchy rain nearby":
             body.style.backgroundImage='url(assets/patchyRainNearby.avif)';
          break;
-        case "Partly Cloudy":
+        case "Partly cloudy":
             body.style.backgroundImage='url(assets/partlyCloudy.jpg)'
             break;
         case "Sunny":
