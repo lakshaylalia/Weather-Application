@@ -41,6 +41,9 @@ btn.addEventListener("click", async () => {
     let result = await weatherCurr(region);
     alert(result);
     weather = result;
+    let info=document.getElementById("info")
+    info.innerHTML=`Weather Cndition : ${weather}`;
+    document.querySelector("main").append(info);
     updateBackgroundImage();
 });
 
@@ -48,6 +51,7 @@ let reset=document.getElementById("reset");
 reset.addEventListener("click",()=>{
     document.getElementById("city").value="";
     body.style.backgroundImage='url(assets/Default.jpg)';
+    document.getElementById("info").innerHTML="";
 })
 
 window.addEventListener("keydown", async (e) => {
