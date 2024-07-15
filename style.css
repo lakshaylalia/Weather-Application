@@ -13,7 +13,7 @@
      width: 100vw;
      background-color: azure;
      background-image: url(assets/Default.jpg);
-     background-size: contain; 
+     background-size: cover; 
      background-repeat: no-repeat;
      background-position: center;
      overflow: auto;
