@@ -25,7 +25,7 @@ let weather;
 let body = document.querySelector("body");
 
 async function weatherCurr(region) {
-    let url = `http://api.weatherapi.com/v1/current.json?key=12aba9c690b94f0e9b0110501240107&q=${region}&aqi=yes`;
+    let url = `https://api.weatherapi.com/v1/current.json?key=12aba9c690b94f0e9b0110501240107&q=${region}&aqi=yes`;
     try {
         let response = await axios.get(url);
         return response.data.current.condition.text;
@@ -43,6 +43,12 @@ btn.addEventListener("click", async () => {
     weather = result;
     updateBackgroundImage();
 });
+
+let reset=document.getElementById("reset");
+reset.addEventListener("click",()=>{
+    document.getElementById("city").value="";
+    body.style.backgroundImage='url(assets/Default.jpg)';
+})
 
 window.addEventListener("keydown", async (e) => {
     if (e.key === "Enter") {
