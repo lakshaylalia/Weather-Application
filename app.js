@@ -6,6 +6,7 @@ const weatherPhotos = {
     "Overcast": "assets/overcast.jpg",
     "Heavy rain": "assets/heavyRain.webp",
     "Light rain": "assets/lightRain.jpg",
+    "Light rain shower":"assets/lightRainShower.jpg",
     "Moderate rain": "assets/moderateRain.jpg",
     "Rain": "assets/rain.webp",
     "Heavy rain at times": "assets/heavyRainAtTimes.jpg",
@@ -39,10 +40,9 @@ btn = document.querySelector("button");
 btn.addEventListener("click", async () => {
     let region = document.getElementById("city").value;
     let result = await weatherCurr(region);
-    alert(result);
     weather = result;
     let info=document.getElementById("info")
-    info.innerHTML=`Weather Cndition : ${weather}`;
+    info.innerHTML=`Weather Condition : ${weather}`;
     document.querySelector("main").append(info);
     updateBackgroundImage();
 });
@@ -69,9 +69,7 @@ function updateBackgroundImage() {
     console.log("Updating background image for weather:", weather);
     if (weather in weatherPhotos) {
         body.style.backgroundImage = `url(${weatherPhotos[weather]})`;
-        console.log("Background image set to:", weatherPhotos[weather]);
     } else {
         body.style.backgroundImage = `url(${weatherPhotos["Default"]})`;
-        console.log("Background image set to default.");
     }
 }
