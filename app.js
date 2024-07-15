@@ -1,186 +1,67 @@
+const weatherPhotos = {
+    "Patchy rain nearby": "assets/patchyRainNearby.avif",
+    "Partly Cloudy": "assets/partlyCloudy.jpg",
+    "Sunny": "assets/sunny.jpg",
+    "Clear": "assets/clear.jpg",
+    "Overcast": "assets/overcast.jpg",
+    "Heavy rain": "assets/heavyRain.webp",
+    "Light rain": "assets/lightRain.jpg",
+    "Moderate rain": "assets/moderateRain.jpg",
+    "Rain": "assets/rain.webp",
+    "Heavy rain at times": "assets/heavyRainAtTimes.jpg",
+    "Patchy light rain": "assets/patchyLight.jpg",
+    "Patchy light rain with thunder": "assets/patchyLightRain.avif",
+    "Thundery outbreak possible": "assets/thunderyOutbreakPossible.webp",
+    "Patchy light drizzle": "assets/patchylightDrizzle.webp",
+    "Mist": "assets/mist.jpg",
+    "Fog": "assets/fog.jpg",
+    "Freezing fog": "assets/freezingFog.jpg",
+    "Blizzard": "assets/Blizzard.webp",
+    "Ice pellets": "assets/icePellets.jpg",
+    "Default": "assets/Default.jpg"
+};
+
 let weather;
-let body=document.querySelector("body");
- async function weatherCurr(region){
-    let url=`http://api.weatherapi.com/v1/current.json?key=12aba9c690b94f0e9b0110501240107&q=${region}&aqi=yes`;
-    try{
-    let response =await axios.get(url);
-    return response.data.current.condition.text
-    }
-    catch(error){
+let body = document.querySelector("body");
+
+async function weatherCurr(region) {
+    let url = `http://api.weatherapi.com/v1/current.json?key=12aba9c690b94f0e9b0110501240107&q=${region}&aqi=yes`;
+    try {
+        let response = await axios.get(url);
+        return response.data.current.condition.text;
+    } catch (error) {
         location.reload();
-        
-        return "Location not found"
+        return "Location not found";
     }
- }
+}
 
-btn=document.querySelector("button")
+btn = document.querySelector("button");
+btn.addEventListener("click", async () => {
+    let region = document.getElementById("city").value;
+    let result = await weatherCurr(region);
+    alert(result);
+    weather = result;
+    updateBackgroundImage();
+});
 
-btn.addEventListener("click",async ()=>{
-    let region=document.getElementById("city").value
-    let result=await weatherCurr(region);
-    alert(result)
-    weather=result;
-    document.getElementById("city").value="";
-
-    switch (weather){
-        case "Patchy rain nearby":
-            body.style.backgroundImage='url(assets/patchyRainNearby.avif)';
-         break;
-        case "Partly cloudy":
-            body.style.backgroundImage='url(assets/partlyCloudy.jpg)'
-            break;
-        case "Sunny":
-            body.style.backgroundImage=' url(assets/sunny.jpg)'
-            break;
-        case "Clear":
-            body.style.backgroundImage='url(assets/clear.jpg)'
-            break;
-        case "Overcast":
-            body.style.backgroundImage='url(assets/overcast.jpg)'
-            break;
-        case "Heavy rain":
-            body.style.backgroundImage='url(assets/heavyRain.webp)'
-            break;
-        case "Light rain":
-            body.style.backgroundImage='url(assets/lightRain.jpg)'
-            break;
-        case "Moderate rain":
-            body.style.backgroundImage='url(assets/moderateRain.jpg)'
-            break;
-        case "Rain":
-            body.style.backgroundImage='url(assets/rain.webp)'
-            break;
-        case "Heavy rain at times":
-            body.style.backgroundImage='url(assets/heavyRainAtTimes.jpg)'
-            break;
-        case "Light rain shower":
-            body.style.backgroundImage='url(assets/lightRainShower.jpg)'
-            break;
-        case "Moderate or heavy rain shower":
-            body.style.backgroundImage='url(assets/moderateorheavyrain.webp)'
-            break;
-        case "Patchy rain possible":
-            body.style.backgroundImage='url(assets/patchyRainPossible.jpg)'
-            break;
-        case "Patchy light rain":
-            body.style.backgroundImage='url(assets/patchyLight.jpg)'
-            break;
-        case "Patchy light rain with thunder":
-            body.style.backgroundImage='url(assets/patchyLightRain.avif)'
-            break;
-        case "Thundery outbreaks possible":
-            body.style.backgroundImage='url(assets/thunderyOutbreakPossible.webp)'
-            break;
-        case "Patchy light drizzle":
-            body.style.backgroundImage='url(assets/patchylightDrizzle.webp)'
-            break;
-        case "Mist":
-            body.style.backgroundImage='url(assets/mist.jpg)'
-            break;
-        case "Fog":
-            body.style.backgroundImage='url(assets/fog.jpg)'
-            break;
-        case "Freezing fog":
-            body.style.backgroundImage='url(assets/freezingFog.jpg)'
-            break;
-        case "Blizzard":
-            body.style.backgroundImage='url(assets/Blizzard.webp)'
-            break;
-        case "Ice pellets":
-            body.style.backgroundImage='url(assets/icePellets.jpg)'
-            break;
-
-        default:
-            body.style.backgroundImage='url(assets/Default.jpg)';
-            break;
+window.addEventListener("keydown", async (e) => {
+    if (e.key === "Enter") {
+        let region = document.getElementById("city").value;
+        let result = await weatherCurr(region);
+        alert(result);
+        weather = result;
+        updateBackgroundImage();
+        document.getElementById("city").value = "";
     }
-})
+});
 
-let reset=document.getElementById("reset");
-reset.addEventListener("click",()=>{
-    document.getElementById("city").value="";
-    body.style.backgroundImage='url(assets/Default.jpg)';
-})
-
-window.addEventListener(("keydown"),async (e)=>{
-    if(e.key=="Enter"){
-        let region=document.getElementById("city").value
-    let result=await weatherCurr(region);
-    alert(result)
-    weather=result;
-    document.getElementById("city").value="";
-
-    switch (weather){
-        case "Patchy rain nearby":
-            body.style.backgroundImage='url(assets/patchyRainNearby.avif)';
-         break;
-        case "Partly cloudy":
-            body.style.backgroundImage='url(assets/partlyCloudy.jpg)'
-            break;
-        case "Sunny":
-            body.style.backgroundImage=' url(assets/sunny.jpg)'
-            break;
-        case "Clear":
-            body.style.backgroundImage='url(assets/clear.jpg)'
-            break;
-        case "Overcast":
-            body.style.backgroundImage='url(assets/overcast.jpg)'
-            break;
-        case "Heavy rain":
-            body.style.backgroundImage='url(assets/heavyRain.webp)'
-            break;
-        case "Light rain":
-            body.style.backgroundImage='url(assets/lightRain.jpg)'
-            break;
-        case "Moderate rain":
-            body.style.backgroundImage='url(assets/moderateRain.jpg)'
-            break;
-        case "Rain":
-            body.style.backgroundImage='url(assets/rain.webp)'
-            break;
-        case "Heavy rain at times":
-            body.style.backgroundImage='url(assets/heavyRainAtTimes.jpg)'
-            break;
-        case "Light rain shower":
-            body.style.backgroundImage='url(assets/lightRainShower.jpg)'
-            break;
-        case "Moderate or heavy rain shower":
-            body.style.backgroundImage='url(assets/moderateorheavyrain.webp)'
-            break;
-        case "Patchy rain possible":
-            body.style.backgroundImage='url(assets/patchyRainPossible.jpg)'
-            break;
-        case "Patchy light rain":
-            body.style.backgroundImage='url(assets/patchyLight.jpg)'
-            break;
-        case "Patchy light rain with thunder":
-            body.style.backgroundImage='url(assets/patchyLightRain.avif)'
-            break;
-        case "Thundery outbreaks possible":
-            body.style.backgroundImage='url(assets/thunderyOutbreakPossible.webp)'
-            break;
-        case "Patchy light drizzle":
-            body.style.backgroundImage='url(assets/patchylightDrizzle.webp)'
-            break;
-        case "Mist":
-            body.style.backgroundImage='url(assets/mist.jpg)'
-            break;
-        case "Fog":
-            body.style.backgroundImage='url(assets/fog.jpg)'
-            break;
-        case "Freezing fog":
-            body.style.backgroundImage='url(assets/freezingFog.jpg)'
-            break;
-        case "Blizzard":
-            body.style.backgroundImage='url(assets/Blizzard.webp)'
-            break;
-        case "Ice pellets":
-            body.style.backgroundImage='url(assets/icePellets.jpg)'
-            break;
-
-        default:
-            body.style.backgroundImage='url(assets/Default.jpg)';
-            break;
+function updateBackgroundImage() {
+    console.log("Updating background image for weather:", weather);
+    if (weather in weatherPhotos) {
+        body.style.backgroundImage = `url(${weatherPhotos[weather]})`;
+        console.log("Background image set to:", weatherPhotos[weather]);
+    } else {
+        body.style.backgroundImage = `url(${weatherPhotos["Default"]})`;
+        console.log("Background image set to default.");
     }
-    }
-})
+}
